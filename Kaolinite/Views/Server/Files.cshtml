@@ -1,3 +1,4 @@
+@model List<FileModel>
 @{
     ViewData["Title"] = "Servers";
     ViewData["ServerId"] = ViewBag.Server.Id;
@@ -6,25 +7,41 @@
 
 <h1>Files</h1>
 <hr>
-@foreach (var file in ViewBag.Files)
-{
-    <table width="600" cellspacing="0">
-        <tbody>
-            <tr>
-                <td bgcolor="#cccccc">📄 @file</td>
-            </tr>
-            <tr>
-                <td bgcolor="#000000">
-                    <font color="cccccc"> 
-                        <form action="/server/files/@ViewData["ServerId"]/" method="post">
-                            <input type="hidden" name="path" id="path" value="@file" />
-                            <input type="submit" value="Open" />
-                        </form>
-                    </font>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
-    <p></p>
-}
+<table width="80%" cellspacing="0">
+    <tbody>
+        <tr>
+            @foreach (var file in Model)
+            {
+                <table width="600" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            @if (file.IsDir)
+                            {
+                                <td bgcolor="#cccccc">
+                                    📁 @file.Path
+                                    <form action="/server/files/@ViewData["ServerId"]/" method="post">
+                                        <input type="hidden" name="path" id="path" value="@file.Path" />
+                                        <input type="submit" value="Open Folder" />
+                                    </form>
+                                </td>
+                            }
+                            else
+                            {
+                                <td bgcolor="#cccccc">
+                                    📄 @file.Path  
+                                </td>
+                            }
+                        </tr>
+                        <tr>
+                            <td bgcolor="#000000">
+                                <font color="cccccc"> 
+                                    [File Info Here]
+                                </font>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </tr>
+    </tbody>
+</table>

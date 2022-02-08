@@ -29,6 +29,11 @@ if (!Directory.Exists("./servers"))
     Directory.CreateDirectory("./servers");
 }
 
+if (!Directory.Exists("./backups"))
+{
+    Directory.CreateDirectory("./backups");
+}
+
 foreach (var server in JsonConvert.DeserializeObject<List<ServerModel>>(File.ReadAllText(@"servers.json")))
 {
     if (!Directory.Exists($"./servers/{server.Id}"))

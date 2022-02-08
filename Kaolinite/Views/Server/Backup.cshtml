@@ -1,9 +1,42 @@
-@model ServerModel
+@model List<FileModel>
 @{
     ViewData["Title"] = "Servers";
-    ViewData["ServerId"] = Model.Id;
-    ViewData["ServerName"] = "- " + Model.Title;
+    ViewData["ServerId"] = ViewBag.Server.Id;
+    ViewData["ServerName"] = "- " + ViewBag.Server.Title;
 }
 
 <h1>Backups</h1>
-<hr>
+<form action="/server/backups/@ViewData["ServerId"]/create" method="up">
+    <input type="submit" value="Create Backup" />
+</form>
+<hr />
+<table width="80%" cellspacing="0">
+    <tbody>
+        <tr>
+            @foreach (var file in Model)
+            {
+                <table width="600" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td bgcolor="#cccccc">
+                                📜 @file.Path
+                                
+                                <form action="/server/backup/@ViewData["ServerId"]/" method="post">
+                                    <input type="hidden" name="path" id="path" value="@file.Path" />
+                                    <input type="submit" value="Apply Backup" />
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#000000">
+                                <font color="cccccc"> 
+                                    [Backup Date]
+                                </font>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </tr>
+    </tbody>
+</table>

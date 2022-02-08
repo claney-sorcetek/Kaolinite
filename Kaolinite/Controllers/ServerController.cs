@@ -25,25 +25,32 @@ public class ServerController : Controller
     public async Task<IActionResult> Files(int id)
     {
         ViewBag.Server = await GetServer(id);
-        ViewBag.Files = await GetFiles(id);
+        List<FileModel> Files = new List<FileModel>();
+        Files = await GetFilesById(id);
         
-        return View();
+        return View(Files);
     }
 
     [HttpPost]
     public async Task<IActionResult> Files(int id, string path)
     {
         ViewBag.Server = await GetServer(id);
-        ViewBag.Files = System.IO.Directory.EnumerateFileSystemEntries(path);
+        List<FileModel> Files;
+
+        if (await TestIfDir(path))
+            Files = await GetFilesByPath(path);
+        else
+            Files = await GetFilesById(id);
         
-        return View("Files");
+        return View(Files);
     }
 
     [HttpGet]
     public async Task<IActionResult> Backup(int id)
     {
-        var server = await GetServer(id);
-        return View(server);
+        ViewBag.Server = await GetServer(id);
+        List<FileModel> Files = await GetFilesByPath("backups/");
+        return View(Files);
     }
 
     [HttpGet]
@@ -59,8 +66,40 @@ public class ServerController : Controller
         return JsonConvert.DeserializeObject<List<ServerModel>>(serverConfig).ElementAt(id);
     }
 
-    private async Task<List<string>> GetFiles(int id)
+    private async Task<List<FileModel>> GetFilesById(int id)
     {
-        return System.IO.Directory.EnumerateFileSystemEntries($"servers/{id}/").ToList<string>();
+        List<FileModel> files = new List<FileModel>();
+        List<string> fileNames = System.IO.Directory.EnumerateFileSystemEntries($"servers/{id}/").ToList<string>();
+        foreach(string fileName in fileNames)
+        {
+            if (await TestIfDir(fileName))
+                files.Add(new FileModel() { Path = fileName, IsDir = true });
+            else
+                files.Add(new FileModel() { Path = fileName, IsDir = false });
+        }
+        return files;
+    }
+
+    private async Task<List<FileModel>> GetFilesByPath(string path)
+    {
+        List<FileModel> files = new List<FileModel>();
+        List<string> fileNames = System.IO.Directory.EnumerateFileSystemEntries(path).ToList<string>();
+        foreach(string fileName in fileNames)
+        {
+            if (await TestIfDir(fileName))
+                files.Add(new FileModel() { Path = fileName, IsDir = true });
+            else
+                files.Add(new FileModel() { Path = fileName, IsDir = false });
+        }
+        return files;
+    }
+
+    private async Task<bool> TestIfDir(string path)
+    {
+        System.IO.FileAttributes attr = System.IO.File.GetAttributes(path);
+        if ((attr & System.IO.FileAttributes.Directory) == System.IO.FileAttributes.Directory)
+            return true;
+        else
+            return false;
     }
 }
