@@ -1,0 +1,105 @@
+@model ServerModel
+@{
+    ViewData["Title"] = "Servers";
+    ViewData["ServerId"] = Model.Id;
+    ViewData["ServerName"] = "- " + Model.Title;
+}
+
+<h1>Console</h1>
+<hr>
+<table width="600" cellspacing="0">
+    <tbody>
+        <tr>
+            <td bgcolor="#cccccc">
+                [<b>@Model.Title</b>]
+                <table>
+                    <tbody>
+                        <tr>
+                            [<button type="button" id="start-btn" style="background-color:#4CAF50;">Start</button>]
+                        </tr>
+                        <tr>
+                            [<button type="button" id="stop-btn" style="background-color:#f44336;">Stop</button>]
+                        </tr>
+                        <tr>
+                            [<button type="button" id="force-btn" style="background-color:#ffff00;">Force Stop</button>]
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#000000">
+                <textarea disabled="disabled">Server is offline...</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#cccccc">
+                <form id="command">
+                    <input id="command-text" type="text" name="Send Commands"> 
+                    <input type="submit">
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    const startButton = document.getElementById('start-btn');
+
+    startButton.addEventListener('click', async _ => {
+    try {     
+        const response = await fetch('/server/@Model.Id/start', {
+        method: 'post'
+        });
+        return;
+    } catch(err) {
+        return;
+    }
+    });
+</script>
+<script>
+    const stopButton = document.getElementById('stop-btn');
+
+    stopButton.addEventListener('click', async _ => {
+    try {     
+        const response = await fetch('/server/@Model.Id/stop', {
+        method: 'post'
+        });
+        return;
+    } catch(err) {
+        return;
+    }
+    });
+</script>
+<script>
+    const forcestopButton = document.getElementById('force-btn');
+
+    forcestopButton.addEventListener('click', async _ => {
+    try {     
+        const response = await fetch('/server/@Model.Id/forcestop', {
+        method: 'post'
+        });
+        return;
+    } catch(err) {
+        return;
+    }
+    });
+</script>
+<script>
+    const commandButton = document.getElementById('command');
+    const command = document.getElementById( "command-text" );
+
+    commandButton.addEventListener('submit', async _ => {
+    try {     
+        const response = await fetch('/server/@Model.Id', {
+        method: 'post',
+        body: {
+            cmd: command
+        }
+        });
+        return;
+    } catch(err) {
+        return;
+    }
+    });
+</script>

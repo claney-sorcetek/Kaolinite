@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kaolinite", "Kaolinite\Kaolinite.csproj", "{7191DF9E-C6AC-41AA-9D17-CA202D554C0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4ED21FD5-FC57-4DD2-ACF7-FD60C2BB259B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED21FD5-FC57-4DD2-ACF7-FD60C2BB259B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED21FD5-FC57-4DD2-ACF7-FD60C2BB259B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED21FD5-FC57-4DD2-ACF7-FD60C2BB259B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B817AF-6E0A-4019-BD03-AB99EE5355F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B817AF-6E0A-4019-BD03-AB99EE5355F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B817AF-6E0A-4019-BD03-AB99EE5355F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B817AF-6E0A-4019-BD03-AB99EE5355F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7191DF9E-C6AC-41AA-9D17-CA202D554C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7191DF9E-C6AC-41AA-9D17-CA202D554C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7191DF9E-C6AC-41AA-9D17-CA202D554C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7191DF9E-C6AC-41AA-9D17-CA202D554C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
