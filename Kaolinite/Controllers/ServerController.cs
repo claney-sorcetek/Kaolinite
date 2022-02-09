@@ -1,7 +1,7 @@
 using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Kaolinite.Models;
+using Kaolinite.Helpers;
 
 namespace Kaolinite.Controllers;
 
@@ -16,14 +16,43 @@ public class ServerController : Controller
 
     public async Task<IActionResult> Index(int id)
     {
-        var server = await GetServer(id);
+        var server = await ServerHelper.GetServer(id);
         return View(server);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Start(int id)
+    {
+        DockerContainerHelper.StartContainerWithId(id);
+        return View("Index");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Stop(int id)
+    {
+        DockerContainerHelper.StopContainerWithId(id);
+        return View("Index");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Restart(int id)
+    {
+        DockerContainerHelper.StopContainerWithId(id);
+        DockerContainerHelper.StartContainerWithId(id);
+        return View("Index");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Command(int id)
+    {
+        DockerContainerHelper.SendCommandToContainerWithId(id);
+        return View("Index");
     }
 
     [HttpGet]
     public async Task<IActionResult> Files(int id)
     {
-        ViewBag.Server = await GetServer(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
         List<FileModel> Files = new List<FileModel>();
         Files = await GetFilesById(id);
         
@@ -33,7 +62,7 @@ public class ServerController : Controller
     [HttpPost]
     public async Task<IActionResult> Files(int id, string path)
     {
-        ViewBag.Server = await GetServer(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
         List<FileModel> Files;
 
         if (await TestIfDir(path))
@@ -47,7 +76,7 @@ public class ServerController : Controller
     [HttpGet]
     public async Task<IActionResult> Config(int id)
     {
-        var Server = await GetServer(id);
+        var Server = await ServerHelper.GetServer(id);
         ViewBag.Server = Server;
 
         var Config = System.IO.File.ReadAllText($"servers/{id}/{Server.ConfigPath}");
@@ -59,18 +88,12 @@ public class ServerController : Controller
     [HttpPost]
     public async Task<IActionResult> Config(int id, string config)
     {
-        var Server = await GetServer(id);
+        var Server = await ServerHelper.GetServer(id);
         ViewBag.Server = Server;
 
         System.IO.File.WriteAllText($"servers/{id}/{Server.ConfigPath}", config);
 
         return RedirectToAction("Config");
-    }
-
-    private async Task<ServerModel> GetServer(int id)
-    {
-        var serverConfig = System.IO.File.ReadAllText(@"servers.json");
-        return JsonConvert.DeserializeObject<List<ServerModel>>(serverConfig).ElementAt(id);
     }
 
     private async Task<List<FileModel>> GetFilesById(int id)

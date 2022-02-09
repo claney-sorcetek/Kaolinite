@@ -1,6 +1,10 @@
 using System.Text.Json;
 using Kaolinite.Models;
 using Newtonsoft.Json;
+using Ductus.FluentDocker.Model.Containers;
+using Ductus.FluentDocker.Builders;
+using Ductus.FluentDocker.Extensions;
+using Ductus.FluentDocker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +24,7 @@ if (!app.Environment.IsDevelopment())
 if (!File.Exists("./servers.json"))
 {
     File.Create("./servers.json").Close();
-    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048, ConfigPath = "settings.json" } };
+    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048, Port = 5000, ConfigPath = "settings.json", DockerFile = "minecraft" } };
     File.WriteAllText("./servers.json", System.Text.Json.JsonSerializer.Serialize<List<ServerModel>>(serverList, new JsonSerializerOptions(){ WriteIndented = true }));
 }
 
@@ -32,6 +36,11 @@ if (!Directory.Exists("./servers"))
 if (!Directory.Exists("./backups"))
 {
     Directory.CreateDirectory("./backups");
+}
+
+if (!Directory.Exists("./dockerfiles"))
+{
+    Directory.CreateDirectory("./dockerfiles");
 }
 
 foreach (var server in JsonConvert.DeserializeObject<List<ServerModel>>(File.ReadAllText(@"servers.json")))
@@ -71,6 +80,26 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "server",
     pattern: "{controller=Server}/{action=Index}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "start",
+    pattern: "{controller=Server}/{action=Start}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "stop",
+    pattern: "{controller=Server}/{action=Stop}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "restart",
+    pattern: "{controller=Server}/{action=Restart}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "command",
+    pattern: "{controller=Server}/{action=Command}/{id}"
 );
 
 app.MapControllerRoute(

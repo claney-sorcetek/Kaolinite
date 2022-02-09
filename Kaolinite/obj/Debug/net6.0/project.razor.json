@@ -1,5 +1,5 @@
 {
-  "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
+  "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16298,58 +16298,58 @@
   "RootNamespace": "Kaolinite",
   "Documents": [
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Backup\\Index.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Backup\\Index.cshtml",
       "TargetPath": "Views\\Backup\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Config.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Config.cshtml",
       "TargetPath": "Views\\Server\\Config.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Dashboard\\Index.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Dashboard\\Servers.cshtml",
+      "TargetPath": "Views\\Dashboard\\Servers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Dashboard\\Index.cshtml",
       "TargetPath": "Views\\Dashboard\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Files.cshtml",
-      "TargetPath": "Views\\Server\\Files.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Index.cshtml",
-      "TargetPath": "Views\\Server\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\Error.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Files.cshtml",
+      "TargetPath": "Views\\Server\\Files.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Dashboard\\Servers.cshtml",
-      "TargetPath": "Views\\Dashboard\\Servers.cshtml",
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Index.cshtml",
+      "TargetPath": "Views\\Server\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     }
   ],

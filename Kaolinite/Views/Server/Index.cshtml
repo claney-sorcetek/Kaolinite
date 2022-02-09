@@ -21,7 +21,7 @@
                             [<button type="button" id="stop-btn" style="background-color:#f44336;">Stop</button>]
                         </tr>
                         <tr>
-                            [<button type="button" id="force-btn" style="background-color:#ffff00;">Force Stop</button>]
+                            [<button type="button" id="restart-btn" style="background-color:#ffff00;">Restart</button>]
                         </tr>
                     </tbody>
                 </table>
@@ -48,7 +48,7 @@
 
     startButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/server/@Model.Id/start', {
+        const response = await fetch('/Server/Start/@Model.Id', {
         method: 'post'
         });
         return;
@@ -62,7 +62,7 @@
 
     stopButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/server/@Model.Id/stop', {
+        const response = await fetch('/Server/Stop/@Model.Id', {
         method: 'post'
         });
         return;
@@ -72,11 +72,11 @@
     });
 </script>
 <script>
-    const forcestopButton = document.getElementById('force-btn');
+    const forcestopButton = document.getElementById('restart-btn');
 
     forcestopButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/server/@Model.Id/forcestop', {
+        const response = await fetch('/Server/Restart/@Model.Id', {
         method: 'post'
         });
         return;
@@ -91,7 +91,7 @@
 
     commandButton.addEventListener('submit', async _ => {
     try {     
-        const response = await fetch('/server/@Model.Id', {
+        const response = await fetch('/Server/Command/@Model.Id', {
         method: 'post',
         body: {
             cmd: command

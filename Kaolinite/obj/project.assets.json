@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Ductus.FluentDocker/2.10.44": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "SharpCompress": "0.29.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Ductus.FluentDocker.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Ductus.FluentDocker.dll": {}
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "type": "package",
         "compile": {
@@ -23,6 +36,24 @@
     }
   },
   "libraries": {
+    "Ductus.FluentDocker/2.10.44": {
+      "sha512": "q6rktNVKt9aKgyIscR88boPX6UyYkDA8g0yulmVHpGhS2U4dIB67PMAIovS8HgLDye04xShcVtTDxEFFLtjn/A==",
+      "type": "package",
+      "path": "ductus.fluentdocker/2.10.44",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "ductus.fluentdocker.2.10.44.nupkg.sha512",
+        "ductus.fluentdocker.nuspec",
+        "lib/net461/Ductus.FluentDocker.dll",
+        "lib/net461/Ductus.FluentDocker.pdb",
+        "lib/netstandard2.0/Ductus.FluentDocker.dll",
+        "lib/netstandard2.0/Ductus.FluentDocker.pdb",
+        "lib/netstandard2.1/Ductus.FluentDocker.dll",
+        "lib/netstandard2.1/Ductus.FluentDocker.pdb"
+      ]
+    },
     "Newtonsoft.Json/13.0.1": {
       "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
       "type": "package",
@@ -69,6 +100,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Ductus.FluentDocker >= 2.10.44",
       "Newtonsoft.Json >= 13.0.1",
       "sharpcompress >= 0.30.1"
     ]
@@ -79,11 +111,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
+      "projectUniqueName": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
       "projectName": "Kaolinite",
-      "projectPath": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
+      "projectPath": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
       "packagesPath": "C:\\Users\\Zombie\\.nuget\\packages\\",
-      "outputPath": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\obj\\",
+      "outputPath": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Zombie\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -110,6 +142,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Ductus.FluentDocker": {
+            "target": "Package",
+            "version": "[2.10.44, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"

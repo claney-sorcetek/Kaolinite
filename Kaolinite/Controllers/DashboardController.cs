@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using Kaolinite.Helpers;
 using Kaolinite.Models;
 
 namespace Kaolinite.Controllers;
@@ -21,14 +21,8 @@ public class DashboardController : Controller
 
     public async Task<IActionResult> Servers()
     {
-        var servers = await GetServers();
+        var servers = await ServerHelper.GetServers();
         return View(servers);
-    }
-
-    private async Task<List<ServerModel>> GetServers()
-    {
-        var serverConfig = System.IO.File.ReadAllText(@"servers.json");
-        return JsonConvert.DeserializeObject<List<ServerModel>>(serverConfig);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

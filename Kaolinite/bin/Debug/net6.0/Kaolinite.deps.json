@@ -8,11 +8,24 @@
     ".NETCoreApp,Version=v6.0": {
       "Kaolinite/1.0.0": {
         "dependencies": {
+          "Ductus.FluentDocker": "2.10.44",
           "Newtonsoft.Json": "13.0.1",
           "SharpCompress": "0.30.1"
         },
         "runtime": {
           "Kaolinite.dll": {}
+        }
+      },
+      "Ductus.FluentDocker/2.10.44": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "SharpCompress": "0.30.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Ductus.FluentDocker.dll": {
+            "assemblyVersion": "1.0.371.0",
+            "fileVersion": "1.0.371.0"
+          }
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -38,6 +51,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Ductus.FluentDocker/2.10.44": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q6rktNVKt9aKgyIscR88boPX6UyYkDA8g0yulmVHpGhS2U4dIB67PMAIovS8HgLDye04xShcVtTDxEFFLtjn/A==",
+      "path": "ductus.fluentdocker/2.10.44",
+      "hashPath": "ductus.fluentdocker.2.10.44.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

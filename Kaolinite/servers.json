@@ -3,6 +3,7 @@
     "Id": 0,
     "Title": "Minecraft",
     "Memory": 2048,
-    "ConfigPath": "settings.txt"
+    "ConfigPath": "settings.txt",
+    "DockerFile": "minecraft"
   }
 ]
