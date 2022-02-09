@@ -16303,6 +16303,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Backup\\Index.cshtml",
+      "TargetPath": "Views\\Backup\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -16330,11 +16335,6 @@
     {
       "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Index.cshtml",
       "TargetPath": "Views\\Server\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Views\\Server\\Backup.cshtml",
-      "TargetPath": "Views\\Server\\Backup.cshtml",
       "FileKind": "mvc"
     },
     {

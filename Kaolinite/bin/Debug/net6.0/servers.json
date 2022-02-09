@@ -2,21 +2,25 @@
   {
     "Id": 0,
     "Title": "Minecraft",
-    "Memory": 2048
+    "Memory": 2048,
+    "ConfigPath": "settings.txt"
   },
   {
     "Id": 1,
     "Title": "Rust",
-    "Memory": 2048
+    "Memory": 2048,
+    "ConfigPath": "settings.json"
   },
   {
     "Id": 2,
     "Title": "Factorio",
-    "Memory": 2048
+    "Memory": 2048,
+    "ConfigPath": "settings.json"
   },
   {
     "Id": 3,
     "Title": "SCPSL",
-    "Memory": 2048
+    "Memory": 2048,
+    "ConfigPath": "settings.json"
   }
 ]

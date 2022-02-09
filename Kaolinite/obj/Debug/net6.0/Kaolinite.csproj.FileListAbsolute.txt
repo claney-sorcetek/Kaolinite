@@ -80,3 +80,4 @@ D:\Libraries\Document\Projects\Kaolinite\Kaolinite\obj\Debug\net6.0\ref\Kaolinit
 D:\Libraries\Document\Projects\Kaolinite\Kaolinite\obj\Debug\net6.0\Kaolinite.pdb
 D:\Libraries\Document\Projects\Kaolinite\Kaolinite\obj\Debug\net6.0\Kaolinite.genruntimeconfig.cache
 D:\Libraries\Document\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\SharpCompress.dll
+E:\Documents\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\SharpCompress.dll

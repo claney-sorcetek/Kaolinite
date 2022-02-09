@@ -14,7 +14,6 @@ public class ServerController : Controller
         _logger = logger;
     }
 
-    [HttpGet]
     public async Task<IActionResult> Index(int id)
     {
         var server = await GetServer(id);
@@ -46,18 +45,26 @@ public class ServerController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Backup(int id)
-    {
-        ViewBag.Server = await GetServer(id);
-        List<FileModel> Files = await GetFilesByPath("backups/");
-        return View(Files);
-    }
-
-    [HttpGet]
     public async Task<IActionResult> Config(int id)
     {
-        var server = await GetServer(id);
-        return View(server);
+        var Server = await GetServer(id);
+        ViewBag.Server = Server;
+
+        var Config = System.IO.File.ReadAllText($"servers/{id}/{Server.ConfigPath}");
+        if (Config is null)
+            Config = "";
+        return View("Config", Config);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Config(int id, string config)
+    {
+        var Server = await GetServer(id);
+        ViewBag.Server = Server;
+
+        System.IO.File.WriteAllText($"servers/{id}/{Server.ConfigPath}", config);
+
+        return RedirectToAction("Config");
     }
 
     private async Task<ServerModel> GetServer(int id)

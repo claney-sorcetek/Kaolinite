@@ -19,7 +19,7 @@
                             {
                                 <td bgcolor="#cccccc">
                                     📁 @file.Path
-                                    <form action="/server/files/@ViewData["ServerId"]/" method="post">
+                                    <form action="/Server/Files/@ViewBag.Server.Id" method="post">
                                         <input type="hidden" name="path" id="path" value="@file.Path" />
                                         <input type="submit" value="Open Folder" />
                                     </form>
@@ -35,7 +35,7 @@
                         <tr>
                             <td bgcolor="#000000">
                                 <font color="cccccc"> 
-                                    [File Info Here]
+                                    ------------
                                 </font>
                             </td>
                         </tr>

@@ -20,7 +20,7 @@ if (!app.Environment.IsDevelopment())
 if (!File.Exists("./servers.json"))
 {
     File.Create("./servers.json").Close();
-    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048 } };
+    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048, ConfigPath = "settings.json" } };
     File.WriteAllText("./servers.json", System.Text.Json.JsonSerializer.Serialize<List<ServerModel>>(serverList, new JsonSerializerOptions(){ WriteIndented = true }));
 }
 
@@ -42,6 +42,14 @@ foreach (var server in JsonConvert.DeserializeObject<List<ServerModel>>(File.Rea
     }
 }
 
+foreach (var server in JsonConvert.DeserializeObject<List<ServerModel>>(File.ReadAllText(@"servers.json")))
+{
+    if (!Directory.Exists($"./backups/{server.Id}"))
+    {
+        Directory.CreateDirectory($"./backups/{server.Id}");
+    }
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -50,39 +58,49 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    "Default",
-    "/",
-    new { controller = "Dashboard", action = "Index"}
+    name: "default",
+    pattern: "{controller=Dashboard}/{action=Index}"
 );
 
 app.MapControllerRoute(
-    "Servers",
-    "/servers",
-    new { controller = "Dashboard", action = "Servers"}
+    name: "servers",
+    pattern: "{controller=Dashboard}/{action=Servers}"
+    
 );
 
 app.MapControllerRoute(
-    "Server",
-    "/server/{id}",
-    new { controller = "Server", action = "Index"}
+    name: "server",
+    pattern: "{controller=Server}/{action=Index}/{id}"
 );
 
 app.MapControllerRoute(
-    "Server",
-    "/server/files/{id}",
-    new { controller = "Server", action = "Files"}
+    name: "files",
+    pattern: "{controller=Server}/{action=Files}/{id}"
 );
 
 app.MapControllerRoute(
-    "Server",
-    "/server/backup/{id}",
-    new { controller = "Server", action = "Backup"}
+    name: "backup",
+    pattern: "{controller=Backup}/{action=Backup}/{id}"
 );
 
 app.MapControllerRoute(
-    "Server",
-    "/server/config/{id}",
-    new { controller = "Server", action = "Config"}
+    name: "create",
+    pattern: "{controller}/{action=Create}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "apply",
+    pattern: "{controller}/{action=Apply}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "delete",
+    pattern: "{controller}/{action=Delete}/{id}"
+);
+
+app.MapControllerRoute(
+    name: "config",
+    pattern: "{controller}/{action=Config}/{id}"
 );
 
 app.Run();

@@ -1,9 +1,16 @@
-@model ServerModel
+@model string
 @{
     ViewData["Title"] = "Servers";
-    ViewData["ServerId"] = Model.Id;
-    ViewData["ServerName"] = "- " + Model.Title;
+    ViewData["ServerId"] = ViewBag.Server.Id;
+    ViewData["ServerName"] = "- " + ViewBag.Server.Title;
 }
 
 <h1>Config</h1>
 <hr>
+<textarea name="config" form="config">
+@Model
+</textarea>
+
+<form action="/Server/Config/@ViewData["ServerId"]" method="post" id="config">
+    <input type="submit" value="Save" />
+</form>

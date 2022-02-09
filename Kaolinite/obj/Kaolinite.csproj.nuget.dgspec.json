@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj": {}
+    "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj": {}
   },
   "projects": {
-    "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj": {
+    "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
+        "projectUniqueName": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
         "projectName": "Kaolinite",
-        "projectPath": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
+        "projectPath": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\Kaolinite.csproj",
         "packagesPath": "C:\\Users\\Zombie\\.nuget\\packages\\",
-        "outputPath": "D:\\Libraries\\Document\\Projects\\Kaolinite\\Kaolinite\\obj\\",
+        "outputPath": "E:\\Documents\\Projects\\Kaolinite\\Kaolinite\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Zombie\\AppData\\Roaming\\NuGet\\NuGet.Config"
