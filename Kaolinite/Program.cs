@@ -24,7 +24,7 @@ if (!app.Environment.IsDevelopment())
 if (!File.Exists("./servers.json"))
 {
     File.Create("./servers.json").Close();
-    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048, Port = 5000, ConfigPath = "settings.json", DockerFile = "minecraft" } };
+    var serverList = new List<ServerModel>(){ new ServerModel(){ Id = 0, Title = "ChangeMe", Memory = 2048, Port = 5000, ConfigPath = "settings.json", RconPassword = "ChangeMe", DockerFile = "minecraft" } };
     File.WriteAllText("./servers.json", System.Text.Json.JsonSerializer.Serialize<List<ServerModel>>(serverList, new JsonSerializerOptions(){ WriteIndented = true }));
 }
 
@@ -99,7 +99,7 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "command",
-    pattern: "{controller=Server}/{action=Command}/{id}"
+    pattern: "{controller=Server}/{action=Command}/{id}/{cmd}"
 );
 
 app.MapControllerRoute(

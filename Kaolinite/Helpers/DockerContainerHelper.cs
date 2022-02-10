@@ -1,66 +1,104 @@
 using System.IO;
-using Ductus.FluentDocker.Model.Containers;
+using System.Net;
+using CoreRCON;
+using CoreRCON.Parsers.Standard;
 using Ductus.FluentDocker.Builders;
-using Ductus.FluentDocker.Extensions;
-using Ductus.FluentDocker.Services;
 
 namespace Kaolinite.Helpers;
 
 public static class DockerContainerHelper
 {
-    public static async void StartContainerWithId(int id)
+    public static async Task<bool> StartContainerWithId(int id)
     {
-        var server = await ServerHelper.GetServer(id);
+        try 
+        {
+            var server = await ServerHelper.GetServer(id);
 
-        if (Globals.containers.Where(c => c.Name == server.Title).Count() <= 0 )
-            return;
+            if (await TestIfContainerStarted(id))
+                return false;
 
-        string dockerfile = await GetDockerFileById(id);
-        var containerBuilder = new Builder();
+            string dockerfile = await GetDockerFileById(id);
+            var containerBuilder = new Builder();
 
-        var container = containerBuilder
-            .DefineImage($"kaolinite/{server.Title}").ReuseIfAlreadyExists()
-            .FromFile(dockerfile)
-            .Maintainer("Zombie").Builder()
+            var container = containerBuilder
+                .DefineImage($"kaolinite/{server.Title.ToLower()}").ReuseIfAlreadyExists()
+                .FromFile(dockerfile)
+                .Maintainer("Zombie").Builder()
 
-            .UseContainer()
-            .WithName(server.Title)
-            .UseImage($"kaolinite/{server.Title}")
-            .ExposePort(server.Port)
-            .Mount($"server/{id}/", "/home/game/", Ductus.FluentDocker.Model.Builders.MountType.ReadWrite)
-            .Build()
-            .Start();
+                .UseContainer()
+                .WithName(server.Title)
+                .UseImage($"kaolinite/{server.Title}")
+                .ExposePort(server.Port)
+                .Mount($"server/{id}/", "/home/game/", Ductus.FluentDocker.Model.Builders.MountType.ReadWrite)
+                .Build()
+                .Start();
 
-        Globals.containers.Add(container);
+            Globals.containers.Add(server.Title, container);
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
-    public static async void StopContainerWithId(int id)
+    public static async Task<bool> StopContainerWithId(int id)
     {
-        var server = await ServerHelper.GetServer(id);
-        var container = Globals.containers.Where(c => c.Name == server.Title).First();
-        
-        if (container is null)
-            return;
+        try 
+        {
+            var server = await ServerHelper.GetServer(id);
+            var container = Globals.containers[server.Title];
+            
+            if (await TestIfContainerStarted(id))
+                return false;
 
-        container.Stop();
+            Globals.containers.Remove(server.Title);
+            container.Stop();
+
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
-    public static async void SendCommandToContainerWithId(int id)
+    public static async Task<bool> SendCommandToContainerWithId(int id, string cmd)
     {
-        var server = await ServerHelper.GetServer(id);
-        var container = Globals.containers.Where(c => c.Name == server.Title).First();
-        
-        if (container is null)
-            return;
+        try 
+        {
+            var server = await ServerHelper.GetServer(id);
+            var container = Globals.containers[server.Title];
+            
+            if (await TestIfContainerStarted(id))
+                return false;
 
-        container.
+            var rcon = new RCON(IPAddress.Parse("127.0.0.1"), (ushort) server.Port, server.RconPassword);
+            await rcon.SendCommandAsync(cmd);
+            rcon.Dispose();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 
     private static async Task<string> GetDockerFileById(int id)
     {
         var server = await ServerHelper.GetServer(id);
-        string dockerfile = await File.ReadAllTextAsync($"dockerfiles/{id}/{server.DockerFile}");
+        string dockerfile = await File.ReadAllTextAsync($"dockerfiles/{server.DockerFile}");
 
         return dockerfile;
+    }
+
+    private static async Task<bool> TestIfContainerStarted(int id)
+    {
+        var server = await ServerHelper.GetServer(id);
+        if (Globals.containers.ContainsKey(server.Title))
+            return true;
+        else
+            return false;
     }
 }

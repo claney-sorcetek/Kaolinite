@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "CoreRCON": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
             "Ductus.FluentDocker": {
               "target": "Package",
               "version": "[2.10.44, )"

@@ -9,5 +9,6 @@ public class ServerModel
     public int Memory { get; set; }
     public int Port { get; set; }
     public string ConfigPath { get; set; }
+    public string RconPassword { get; set; }
     public string DockerFile { get; set; }
 }

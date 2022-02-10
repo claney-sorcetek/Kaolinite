@@ -1,8 +1,8 @@
-@model ServerModel
 @{
     ViewData["Title"] = "Servers";
-    ViewData["ServerId"] = Model.Id;
-    ViewData["ServerName"] = "- " + Model.Title;
+    ViewData["ServerId"] = ViewBag.Server.Id;
+    ViewData["ServerName"] = "- " + ViewBag.Server.Title;
+    ViewData["Error"] = ViewBag.Error;
 }
 
 <h1>Console</h1>
@@ -10,8 +10,14 @@
 <table width="600" cellspacing="0">
     <tbody>
         <tr>
+            @if (ViewData["Error"] is not null)
+            {
+                <td>
+                    <h2>@ViewData["Error"]</h2>
+                </td>
+            }
             <td bgcolor="#cccccc">
-                [<b>@Model.Title</b>]
+                [<b>@ViewData["ServerName"]</b>]
                 <table>
                     <tbody>
                         <tr>
@@ -48,7 +54,7 @@
 
     startButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/Server/Start/@Model.Id', {
+        const response = await fetch('/Server/Start/@ViewData["ServerId"]', {
         method: 'post'
         });
         return;
@@ -62,7 +68,7 @@
 
     stopButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/Server/Stop/@Model.Id', {
+        const response = await fetch('/Server/Stop/@ViewData["ServerId"]', {
         method: 'post'
         });
         return;
@@ -76,7 +82,7 @@
 
     forcestopButton.addEventListener('click', async _ => {
     try {     
-        const response = await fetch('/Server/Restart/@Model.Id', {
+        const response = await fetch('/Server/Restart/@ViewData["ServerId"]', {
         method: 'post'
         });
         return;
@@ -91,11 +97,8 @@
 
     commandButton.addEventListener('submit', async _ => {
     try {     
-        const response = await fetch('/Server/Command/@Model.Id', {
+        const response = await fetch(`/Server/Command/@ViewData["ServerId"]/${command}`, {
         method: 'post',
-        body: {
-            cmd: command
-        }
         });
         return;
     } catch(err) {

@@ -16,36 +16,63 @@ public class ServerController : Controller
 
     public async Task<IActionResult> Index(int id)
     {
-        var server = await ServerHelper.GetServer(id);
-        return View(server);
+        ViewBag.Server = await ServerHelper.GetServer(id);
+
+        return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Start(int id)
     {
-        DockerContainerHelper.StartContainerWithId(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
+
+        if (!await DockerContainerHelper.StartContainerWithId(id))
+        {
+            ViewBag.Error = "Error occured while starting server!";
+        }
+
         return View("Index");
     }
 
     [HttpPost]
     public async Task<IActionResult> Stop(int id)
     {
-        DockerContainerHelper.StopContainerWithId(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
+
+        if (!await DockerContainerHelper.StopContainerWithId(id))
+        {
+            ViewBag.Error = "Error occured while stopping server!";
+        }
+
         return View("Index");
     }
 
     [HttpPost]
     public async Task<IActionResult> Restart(int id)
     {
-        DockerContainerHelper.StopContainerWithId(id);
-        DockerContainerHelper.StartContainerWithId(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
+
+        bool partOne = await DockerContainerHelper.StartContainerWithId(id);
+        bool partTwo = await DockerContainerHelper.StopContainerWithId(id);
+
+        if (!partOne && !partTwo)
+        {
+            ViewBag.Error = "Error occured while restarting server!";
+        }
+
         return View("Index");
     }
 
     [HttpPost]
-    public async Task<IActionResult> Command(int id)
+    public async Task<IActionResult> Command(int id, string cmd)
     {
-        DockerContainerHelper.SendCommandToContainerWithId(id);
+        ViewBag.Server = await ServerHelper.GetServer(id);
+
+        if (!await DockerContainerHelper.SendCommandToContainerWithId(id, cmd))
+        {
+            ViewBag.Error = "Error occured while sending command!";
+        }
+
         return View("Index");
     }
 
@@ -53,6 +80,7 @@ public class ServerController : Controller
     public async Task<IActionResult> Files(int id)
     {
         ViewBag.Server = await ServerHelper.GetServer(id);
+
         List<FileModel> Files = new List<FileModel>();
         Files = await GetFilesById(id);
         
@@ -63,6 +91,7 @@ public class ServerController : Controller
     public async Task<IActionResult> Files(int id, string path)
     {
         ViewBag.Server = await ServerHelper.GetServer(id);
+
         List<FileModel> Files;
 
         if (await TestIfDir(path))
@@ -77,6 +106,7 @@ public class ServerController : Controller
     public async Task<IActionResult> Config(int id)
     {
         var Server = await ServerHelper.GetServer(id);
+        
         ViewBag.Server = Server;
 
         var Config = System.IO.File.ReadAllText($"servers/{id}/{Server.ConfigPath}");

@@ -82,3 +82,4 @@ D:\Libraries\Document\Projects\Kaolinite\Kaolinite\obj\Debug\net6.0\Kaolinite.ge
 D:\Libraries\Document\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\SharpCompress.dll
 E:\Documents\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\SharpCompress.dll
 D:\Libraries\Document\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\Ductus.FluentDocker.dll
+D:\Libraries\Document\Projects\Kaolinite\Kaolinite\bin\Debug\net6.0\CoreRCON.dll

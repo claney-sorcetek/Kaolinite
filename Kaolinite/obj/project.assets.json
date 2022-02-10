@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "CoreRCON/5.0.2": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Pipelines": "4.7.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/CoreRCON.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/CoreRCON.dll": {}
+        }
+      },
       "Ductus.FluentDocker/2.10.44": {
         "type": "package",
         "dependencies": {
@@ -32,10 +44,32 @@
         "runtime": {
           "lib/net5.0/SharpCompress.dll": {}
         }
+      },
+      "System.IO.Pipelines/4.7.2": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/System.IO.Pipelines.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.IO.Pipelines.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "CoreRCON/5.0.2": {
+      "sha512": "TtHtn+lhH4i/SD9LFJCUALYGjsxehutNAur7Z6g3sNUdJgpHtCR6Yy0Gg3EH/HGKdAdQ5h+BInPePLiczp6lyw==",
+      "type": "package",
+      "path": "corercon/5.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "corercon.5.0.2.nupkg.sha512",
+        "corercon.nuspec",
+        "lib/netstandard2.0/CoreRCON.dll",
+        "logo.png"
+      ]
+    },
     "Ductus.FluentDocker/2.10.44": {
       "sha512": "q6rktNVKt9aKgyIscR88boPX6UyYkDA8g0yulmVHpGhS2U4dIB67PMAIovS8HgLDye04xShcVtTDxEFFLtjn/A==",
       "type": "package",
@@ -96,10 +130,39 @@
         "sharpcompress.0.30.1.nupkg.sha512",
         "sharpcompress.nuspec"
       ]
+    },
+    "System.IO.Pipelines/4.7.2": {
+      "sha512": "rGIIhoY3lUdn9rWeuGdgeZZ0P+SpJ1wZI5g8TnXqgvuhFgUP7iP9Nt5FZebYInQZQxqnwjPxdYYBE5l/8PJmqQ==",
+      "type": "package",
+      "path": "system.io.pipelines/4.7.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.IO.Pipelines.dll",
+        "lib/net461/System.IO.Pipelines.xml",
+        "lib/netcoreapp3.0/System.IO.Pipelines.dll",
+        "lib/netcoreapp3.0/System.IO.Pipelines.xml",
+        "lib/netstandard1.3/System.IO.Pipelines.dll",
+        "lib/netstandard1.3/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "ref/net461/System.IO.Pipelines.dll",
+        "ref/net461/System.IO.Pipelines.xml",
+        "ref/netcoreapp2.0/System.IO.Pipelines.dll",
+        "ref/netcoreapp2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.4.7.2.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "CoreRCON >= 5.0.2",
       "Ductus.FluentDocker >= 2.10.44",
       "Newtonsoft.Json >= 13.0.1",
       "sharpcompress >= 0.30.1"
@@ -142,6 +205,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "CoreRCON": {
+            "target": "Package",
+            "version": "[5.0.2, )"
+          },
           "Ductus.FluentDocker": {
             "target": "Package",
             "version": "[2.10.44, )"
